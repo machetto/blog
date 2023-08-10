@@ -1,11 +1,11 @@
 ---
-title: Remediating SSL/TLS related vulnerabilities on Windows Servers
+title: Remediating SSL/TLS vulnerabilities on Windows
 tags: [security, windows]
 created: 2021-06-21T00:43:47.773Z
 modified: 2021-06-24T01:22:49.580Z
 ---
 
-One day our regular Tenable scans revealed the following vulnerabilities in the local network:
+Tenable security scans revealed new vulnerabilities in our local network the other day.
 
 - *[SSL Medium Strength Cipher Suites Supported (SWEET32)](https://www.tenable.com/plugins/nessus/42873)* (CVE-2016-2183)
 

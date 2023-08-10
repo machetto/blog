@@ -1,26 +1,24 @@
 ---
-title: Updating logical ID of an AWS CF
+title: Updating logical ID in AWS CloudFormation
 tags: [aws]
 created: 2022-07-13T00:43:47.773Z
 modified: 2022-07-13T01:22:49.580Z
 ---
 
-Recently I had been refactoring some older code and encountered an error
-with AWS CloudFormation failing to update an existing stack.
+Recently I was refactoring our older codebase and encountered a generic looking error while updating a stack via AWS CloudFormation.
 
 ```
 <resource_name> already exists in stack
 ```
 
-It turned out some CF resources' logical names (AKA logical ID)
-had been changed in the new CF template however their custom physical names remained unchanged.
+The reason for the error message was interesting - the resources' logical names (AKA logical IDs)
+had been updated in the CF template which you should do in a certian way.
 
-The problem had been [explained at SO]
-(https://stackoverflow.com/questions/58268397/how-to-re-deploy-stack-when-getting-resource-already-exists-in-stack-error-wi)
-and I will leave it here (slighly updated).
+The problem had been [well explained at SO](https://stackoverflow.com/questions/58268397/how-to-re-deploy-stack-when-getting-resource-already-exists-in-stack-error-wi)
+and I will keep it below (albeit slighly improved).
 
-When CloudFormation creates a resource, it associates a logical name
-specified in CF template with this resource. For example:
+When CloudFormation creates a resource, it associates a logical name specified in CF template with this resource.
+For example:
 
 
 ```
@@ -66,10 +64,10 @@ resources before deleting any removed ones.
 
 The solution is to either
 
-1) Put the logical ID back to what it originally was so CloudFormation
+* Put the logical ID back to what it originally was so CloudFormation
 recognises it as an 'update' rather than a 'create' or
 
-2) Change the name (the 'SomePhysicalName' in this example) to be something else.
+* Change the name (the 'SomePhysicalName' in this example) to be something else.
 
 Changing the name (or whatever the unique field is for the resource in
 question) can be a convenient option, because it will create the new
